@@ -59,7 +59,7 @@ func (s *Server) Check(ctx context.Context, in *healthpb.HealthCheckRequest) (*h
 			Status: servingStatus,
 		}, nil
 	}
-	return nil, status.Error(codes.NotFound, "unknown service")
+	return nil, status.Errorf(codes.NotFound, "unknown service: %s", in.Service)
 }
 
 // Watch implements `service Health`.
